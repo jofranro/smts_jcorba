@@ -24,6 +24,7 @@ public class Server {
       accountImpl.setORB(orb);
       accountImpl.id = "1111";
       accountImpl.balance = 10000.00;
+      
 
       // get object reference from the servant
       org.omg.CORBA.Object ref = rootpoa.servant_to_reference(accountImpl);

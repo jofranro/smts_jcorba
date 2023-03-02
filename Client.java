@@ -34,9 +34,10 @@ public class Client
         
         try{
             switch(args[4]){
+                
                 case "balance":
                     try{
-                        System.out.format("Balance is %.2f\n", (accountImpl.getBalance("1111")));
+                        System.out.format("Balance is %.2f\n", (accountImpl.getBalance(args[5])));
                     }
                     catch(Exception e){
                         System.out.println("insert account ID");
@@ -61,17 +62,45 @@ public class Client
                         System.out.println("Insert withdraw amount.");
                     }
                     break;
-                 /*   
-                case "newacc":
+                case "closeacc":
                     try{
-                        System.out.println("new");
+                        accountImpl.closeAccount();
                     }
-                    catch(){
-                        System.out.println("Insert initial amount");
+                    catch(Exception e){
+                        System.out.println("Insert account ID.");
                     }
                     break;
-                  */
-                  
+
+                case "shutdown":
+                    accountImpl.shutdown();
+                    break;
+                
+                case "help":
+                    System.out.println("balance <account ID>");
+                    System.out.println("deposit <amount>");
+                    System.out.println("withdraw <amount>");
+                    System.out.println("closeacc <account ID>");
+                    System.out.println("shutdown");
+                    break;            
+                
+                case "payinterest":
+                    try{
+                        accountImpl.withdraw(Double.parseDouble(args[5]));
+                    }
+                    catch(Exception e){
+                        System.out.println("Insert withdraw amount.");
+                    }
+                    break;
+                    
+                case "giveloan":
+                    try{
+                        accountImpl.deposit(Double.parseDouble(args[5]));
+                    }
+                    catch(Exception e){
+                        System.out.println("Insert deposit amount.");
+                    }
+                    break;
+    
                 default:
                     System.out.println("Client server is operational.");
                     break;
@@ -80,13 +109,9 @@ public class Client
             System.out.println("Input error");
         }
         
-        
-        //accountImpl.shutdown();
-
         } catch (Exception e) {
           System.out.println("ERROR : " + e) ;
           e.printStackTrace(System.out);
-          }
+        }
     }
-
 }

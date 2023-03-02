@@ -28,9 +28,27 @@ class AccountImpl extends AccountPOA {
   public void withdraw(double amount){
     this.balance -= amount;
   }
-    
+
+  public void closeAccount(){
+    this.balance = 0;
+  }
+  public void invest(double amount){
+    this.balance = amount * 0.3;
+  }
+  public void payInterest(double amount){
+    double interest = amount * 0.05;
+    this.balance -= interest;
+  }
+  public void giveLoan(double amount){
+    this.balance += amount;
+  }
+  public void openAccount(String id, double balance){
+    this.id = id;
+    this.balance = balance;
+  }
   // implement shutdown() method
   public void shutdown() {
     orb.shutdown(false);
   }
+
 }
